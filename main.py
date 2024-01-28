@@ -3,16 +3,13 @@ import pyttsx3
 import pytesseract
 import numpy as np
 from translate import Translator
-
-
-pytesseract.pytesseract.tesseract_cmd = 'A:\\Downloads\\tesseract\\tesseract.exe'
+print("test")
+pytesseract.pytesseract.tesseract_cmd = 'C:\\tesseract\\tesseract.exe'
 
 lang = ""
-
-
-
-vidCap = cv2.VideoCapture(0)
+vidCap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 # print(pytesseract.get_languages(config=''))
+print("test")
 print("press space to capture frame and translate or press q to quit")
 while True:
     ret, frame = vidCap.read()
@@ -20,7 +17,6 @@ while True:
     if not ret:
         print("Error: Could not capture frame")
         break
-
 
     if cv2.waitKey(1) == ord(' '):
         ret, imgToRead = vidCap.read()
@@ -38,6 +34,9 @@ while True:
                     break
                 translation = translator.translate(text)
                 print("The words on the image translated to " + lang + " are : " + translation)
+                engine = pyttsx3.init()
+                engine.setProperty('volume', .5)
+                engine.say(translation)
 
             elif lan == "s":
                 translator = Translator(to_lang="es")
@@ -76,5 +75,3 @@ while True:
     elif cv2.waitKey(1) == ord('q'):
         print("closing program..bye!!")
         break
-
-
