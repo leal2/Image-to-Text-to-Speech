@@ -3,14 +3,12 @@ import pyttsx3
 import pytesseract
 import numpy as np
 from translate import Translator
-print("test")
-pytesseract.pytesseract.tesseract_cmd = 'C:\\tesseract\\tesseract.exe'
 
+pytesseract.pytesseract.tesseract_cmd = 'C:\\tesseract\\tesseract.exe'
 lang = ""
+
 vidCap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-# print(pytesseract.get_languages(config=''))
-print("test")
-print("press space to capture frame and translate or press q to quit")
+("press space to capture frame and translate or press q to quit")
 while True:
     ret, frame = vidCap.read()
     cv2.imshow("vid feed", frame)
